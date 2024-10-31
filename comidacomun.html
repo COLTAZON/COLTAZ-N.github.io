@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Recetas de Comida Común</title>
+    <link rel="stylesheet" href="comidacomun.css">
+</head>
+<body>
+    <header>
+        
+        <img src="img/logo i6.png" alt="Logo Coltazón" id="logo">
+        
+         <h1>Bienvenidos a Coltazón</h1>
+        <p>Explore nuestros deliciosos platos</p>
+        <div class="search-container">
+            <form id="search-form" action="#">
+                <input type="text" id="search-input" placeholder="Buscar en la página...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evita el envío del formulario
+                const searchQuery = document.getElementById('search-input').value.toLowerCase();
+                const sections = document.querySelectorAll('main section');
+                let found = false;
+    
+                sections.forEach(section => {
+                    const textContent = section.textContent.toLowerCase();
+                    if (textContent.includes(searchQuery)) {
+                        found = true;
+                        // Desplaza la vista a la sección encontrada
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Resalta la sección encontrada
+                        section.style.backgroundColor = '#ffff9';
+                        // Después de un tiempo, volver al color original
+                        setTimeout(() => {
+                            section.style.backgroundColor = 'white';
+                        }, 2000);
+                    }
+                });
+                if (!found) {
+                    alert('No se encontraron coincidencias.');
+                }
+            });
+        </script>
+    </header>
+</script>
+<button id="btnBackToTop" title="Volver Arriba">↑</button>
+<script>
+   var btnBackToTop = document.getElementById("btnBackToTop");
+   
+
+   window.onscroll = function() { scrollFunction() };
+   
+   function scrollFunction() {
+       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+           btnBackToTop.style.display = "block";
+       } else {
+           btnBackToTop.style.display = "none";
+       }
+   }
+   
+   
+   btnBackToTop.addEventListener("click", function() {
+       document.body.scrollTop = 0; 
+       document.documentElement.scrollTop = 0; 
+   });
+   </script>
+    <nav>
+    
+        <center><h1>COMIDA COMÚN</h1></center>
+       
+        <ul>
+            <li><a href="index.html">Coltazón</a></li>
+            <li><a href="comidasrapidas.html">Comida Rápida</a></li>
+            <li><a href="cvegetariana.html">Comida Vegetariana</a></li>
+            <li><a href="postres.html">Postres</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+            <li><a href="pcocina.html">Productos</a></li>
+            <li><a href="conocenos.html">Conocenos</a></li>
+        </ul>
+    </nav>
+    <p>𝓐𝓺𝓾í 𝓮𝓷𝓬𝓸𝓷𝓽𝓻𝓪𝓻𝓪𝓼 𝓭𝓲𝓿𝓮𝓻𝓼𝓪𝓼 𝓶𝓪𝓷𝓮𝓻𝓪𝓼 𝓭𝓮 𝓻𝓮𝓪𝓵𝓲𝔃𝓪𝓻 𝓬𝓸𝓶𝓲𝓭𝓪𝓼 𝓬𝓪𝓵𝓵𝓮𝓳𝓮𝓻𝓪𝓼 𝓺𝓾𝓮 𝓽𝓪𝓷𝓽𝓸 𝓽𝓮 𝓰𝓾𝓼𝓽𝓪𝓷.</p>
+    <section class="recipe">
+        <center><h2>Pancakes de Avena y Plátano</h2></center>
+        <center><img src="img/avena y abanani.jfif" alt="Pancakes de Avena y Plátano"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>1 taza de avena</li>
+            <li>1 plátano maduro</li>
+            <li>2 huevos</li>
+            <li>1/2 taza de leche (puede ser vegetal)</li>
+            <li>1 cucharadita de polvo de hornear</li>
+            <li>1 cucharadita de esencia de vainilla</li>
+            <li>Pizca de sal</li>
+            <li>Aceite o mantequilla para cocinar</li>
+            <li>Miel o sirope para servir</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Colocar la avena en un procesador de alimentos y triturar hasta obtener una harina fina.</li>
+            <li>En un bol, machacar el plátano y mezclar con los huevos, la leche, la esencia de vainilla y la pizca de sal.</li>
+            <li>Agregar la harina de avena y el polvo de hornear, y mezclar bien.</li>
+            <li>Calentar una sartén a fuego medio y añadir un poco de aceite o mantequilla.</li>
+            <li>Verter pequeñas porciones de la mezcla en la sartén y cocinar hasta que se formen burbujas en la superficie, luego voltear y cocinar hasta que estén doradas.</li>
+            <li>Servir los pancakes calientes con miel o sirope por encima.</li>
+        </ol>
+        <p>https://youtu.be/QqcDmJ5tcOA?si=CjCJZ2MpNJowwzgU</p>
+    </section>
+
+    <section class="recipe">
+        <center><h2>Batido Energético de Frutas</h2></center>
+      <center>  <img src="img/Batido Energético de Frutas.jfif" alt="Batido Energético de Frutas"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>1 plátano</li>
+            <li>1 taza de frutas congeladas (como fresas, arándanos o mango)</li>
+            <li>1 taza de espinacas frescas</li>
+            <li>1 taza de leche (puede ser vegetal)</li>
+            <li>1 cucharada de mantequilla de almendra o maní</li>
+            <li>1 cucharada de semillas de chía o linaza (opcional)</li>
+            <li>Miel o sirope de agave al gusto</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Colocar todos los ingredientes en una licuadora.</li>
+            <li>Mezclar hasta obtener una textura suave y cremosa.</li>
+            <li>Probar y ajustar el dulzor con miel o sirope de agave si es necesario.</li>
+            <li>Servir inmediatamente en un vaso alto.</li>
+        </ol>
+    </section>
+    <section class="recipe">
+        <center><h2>Pollo al Curry con Arroz</h2></center>
+      <center>  <img src="img/pollo al curry 20.jfif" alt="Pollo al Curry con Arroz"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>500g de pechuga de pollo, cortada en trozos</li>
+            <li>2 cucharadas de aceite de oliva</li>
+            <li>1 cebolla picada</li>
+            <li>2 dientes de ajo picados</li>
+            <li>1 pimiento rojo picado</li>
+            <li>400ml de leche de coco</li>
+            <li>2 cucharadas de pasta de curry</li>
+            <li>1 cucharadita de cúrcuma</li>
+            <li>Sal y pimienta al gusto</li>
+            <li>Arroz blanco cocido para acompañar</li>
+            <li>Cilantro fresco para decorar</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Calentar el aceite de oliva en una sartén grande a fuego medio.</li>
+            <li>Agregar la cebolla, el ajo y el pimiento rojo, y sofreír hasta que estén tiernos.</li>
+            <li>Incorporar el pollo y cocinar hasta que esté dorado por todos lados.</li>
+            <li>Agregar la pasta de curry y la cúrcuma, y mezclar bien.</li>
+            <li>Verter la leche de coco y llevar a ebullición. Reducir el fuego y dejar cocinar a fuego lento durante 20 minutos, o hasta que el pollo esté cocido y la salsa haya espesado.</li>
+            <li>Salpimentar al gusto.</li>
+            <li>Servir caliente sobre arroz blanco y decorar con cilantro fresco.</li>
+        </ol>
+    </section>
+
+    <section class="recipe">
+        <center><h2>Ensalada de Pasta con Verduras y Atún</h2></center>
+        <center><img src="img/Ensalada de Pasta con Verduras y Atún.jfif" alt="Ensalada de Pasta con Verduras y Atún"> </center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>250g de pasta corta (como fusilli o penne)</li>
+            <li>1 lata de atún en agua, escurrido</li>
+            <li>1 pimiento verde picado</li>
+            <li>1 pimiento rojo picado</li>
+            <li>1 pepino picado</li>
+            <li>1/2 cebolla roja picada</li>
+            <li>1 taza de maíz dulce</li>
+            <li>1/4 taza de aceitunas negras en rodajas</li>
+            <li>1/4 taza de aceite de oliva</li>
+            <li>2 cucharadas de vinagre balsámico</li>
+            <li>Sal y pimienta al gusto</li>
+            <li>Hojas de albahaca fresca para decorar</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Cocinar la pasta según las instrucciones del paquete. Escurrir y enfriar bajo agua fría.</li>
+            <li>En un bol grande, mezclar la pasta cocida con el atún, los pimientos, el pepino, la cebolla, el maíz y las aceitunas.</li>
+            <li>En un tazón pequeño, mezclar el aceite de oliva y el vinagre balsámico. Salpimentar al gusto.</li>
+            <li>Verter el aderezo sobre la ensalada de pasta y mezclar bien.</li>
+            <li>Decorar con hojas de albahaca fresca y servir.</li>
+        </ol>
+    </section>
+    <section class="recipe">
+        <center><h2>Salmón al Horno con Verduras</h2></center>
+        <center><img src="img/Salmón al Horno con Verduras.jfif" alt="Salmón al Horno con Verduras"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>4 filetes de salmón</li>
+            <li>2 cucharadas de aceite de oliva</li>
+            <li>1 limón, en rodajas</li>
+            <li>2 dientes de ajo picados</li>
+            <li>1 pimiento rojo, en tiras</li>
+            <li>1 calabacín, en rodajas</li>
+            <li>1 taza de tomates cherry</li>
+            <li>Sal y pimienta al gusto</li>
+            <li>Hierbas frescas (como eneldo o perejil) para decorar</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Precalentar el horno a 200°C.</li>
+            <li>Colocar los filetes de salmón en una bandeja para hornear y sazonar con sal y pimienta.</li>
+            <li>Distribuir las rodajas de limón, el ajo, el pimiento rojo, el calabacín y los tomates cherry alrededor del salmón.</li>
+            <li>Rociar con aceite de oliva.</li>
+            <li>Hornear durante 15-20 minutos, o hasta que el salmón esté cocido y las verduras estén tiernas.</li>
+            <li>Servir caliente, decorado con hierbas frescas.</li>
+        </ol>
+    </section>
+
+
+    <footer id="redes">
+        <center>
+          <p>Síguenos en nuestras redes sociales:</p>
+          <ul>
+              <li><a href="https://web.facebook.com/profile.php?id=61566984811997" target="_blank"><img class="facebook" src="img/facebook.png" alt="facebook"></a></li>
+              <li><a href="https://x.com/coltazon" target="_blank"><img class="x" src="img/x.png" alt="x"></a></li>
+              <li><a href="https://www.instagram.com/coltazon183/profilecard/?igsh=YnRxaDh6MTBweTBt" target="_blank"><img class="instagram" src="img/instagram.webp" alt="instagram"></a></li>
+          </ul>
+          <p>&copy; 2024 Coltazón. Todos los derechos reservados.</p>
+        </center>
+      </footer> 
+    
+</body>
+</html>

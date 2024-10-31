@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="prueebaas.css">
+</head>
+<body>
+ <header>
+        <h1>Gestión de Usuarios y Compras</h1>
+        <div class="cart-container">
+            <img src="cart.png" alt="Carrito de Compras" class="cart-icon">
+            <div id="cart">
+                <ul id="cart-items"></ul>
+                <p><strong>Total:</strong> $<span id="total-price">0.00</span></p>
+                <button id="checkout-btn">Finalizar Compra</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Formulario de Registro -->
+    <section id="register-section">
+        <h2>Registro</h2>
+        <form id="register-form">
+            <input type="text" id="register-username" placeholder="Nombre de Usuario" required>
+            <input type="password" id="register-password" placeholder="Contraseña" required>
+            <input type="email" id="register-email" placeholder="Correo Electrónico" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <section id="login-section">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Nombre de Usuario" required>
+            <input type="password" id="login-password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </section>
+
+    <!-- Formulario de Actualización de Usuario -->
+    <section id="user-panel" style="display: none;">
+        <h2>Actualizar Información</h2>
+        <input type="email" id="update-email" placeholder="Correo Electrónico">
+        <input type="text" id="update-address" placeholder="Dirección">
+        <input type="tel" id="update-phone" placeholder="Teléfono">
+        <button id="update-btn">Actualizar</button>
+        <button id="logout-btn">Cerrar Sesión</button>
+    </section>
+
+    <!-- Productos -->
+    <section id="products-section">
+        <h2>Productos</h2>
+        <div id="product-grid" class="product-grid">
+            <!-- Productos se cargarán aquí -->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        loadProducts();
+        loadUsers();
+    });
+    
+    function loadProducts() {
+        Papa.parse('data/productos.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                populateProductGrid(results.data);
+            }
+        });
+    }
+    
+    function loadUsers() {
+        Papa.parse('data/usuarios.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                users = results.data;
+            }
+        });
+    }
+    
+    function populateProductGrid(products) {
+        const productGrid = document.getElementById('product-grid');
+    
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+    
+            productDiv.innerHTML = `
+                <img src="${product['Imagen']}" alt="${product['Nombre del Producto']}">
+                <h2>${product['Nombre del Producto']}</h2>
+                <p>${product['Descripción']}</p>
+                <p>Precio: $${parseFloat(product['Precio']).toFixed(2)}</p>
+                <input type="number" min="1" value="1">
+                <button onclick="addToCart('${product['Nombre del Producto']}', ${parseFloat(product['Precio'])})">Añadir al carrito</button>
+            `;
+    
+            productGrid.appendChild(productDiv);
+        });
+    }
+    
+    function addToCart(productName, productPrice) {
+        const quantityInput = event.target.previousElementSibling;
+        const quantity = parseInt(quantityInput.value);
+    
+        const cartItem = {
+            name: productName,
+            price: productPrice,
+            quantity: quantity
+        };
+    
+        // Agregar al carrito
+        cart.push(cartItem);
+        updateCart();
+    }
+    
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        const totalPrice = document.getElementById('total-price');
+    
+        cartItems.innerHTML = '';
+        let total = 0;
+    
+        cart.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
+            cartItems.appendChild(listItem);
+    
+            total += item.price * item.quantity;
+        });
+    
+        totalPrice.textContent = total.toFixed(2);
+    }
+    
+    // Registro de usuario
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('register-username').value;
+        const password = document.getElementById('register-password').value;
+        const email = document.getElementById('register-email').value;
+        
+        if (users.find(user => user['Nombre de Usuario'] === username)) {
+            alert('Nombre de usuario ya existe');
+            return;
+        }
+        
+        users.push({ 'Nombre de Usuario': username, 'Contraseña': password, 'Correo Electrónico': email, 'Dirección': '', 'Teléfono': '' });
+        alert('Usuario registrado con éxito');
+    });
+    
+    // Inicio de sesión
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+        
+        loggedInUser = users.find(user => user['Nombre de Usuario'] === username && user['Contraseña'] === password);
+        
+        if (loggedInUser) {
+            document.getElementById('user-panel').style.display = 'block';
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('register-section').style.display = 'none';
+            updateUserPanel();
+        } else {
+            alert('Nombre de usuario o contraseña incorrectos');
+        }
+    });
+    
+    // Actualización de usuario
+    document.getElementById('update-btn').addEventListener('click', function() {
+        if (!loggedInUser) return;
+        
+        loggedInUser['Correo Electrónico'] = document.getElementById('update-email').value;
+        loggedInUser['Dirección'] = document.getElementById('update-address').value;
+        loggedInUser['Teléfono'] = document.getElementById('update-phone').value;
+        
+        alert('Datos actualizados con éxito');
+    });
+    
+    // Cierre de sesión
+    document.getElementById('logout-btn').addEventListener('click', function() {
+        loggedInUser = null;
+        document.getElementById('user-panel').style.display = 'none';
+        document.getElementById('login-section').style.display = 'block';
+        document.getElementById('register-section').style.display = 'block';
+    });
+    
+    // Mostrar panel de usuario
+    function updateUserPanel() {
+        if (loggedInUser) {
+            document.getElementById('update-email').value = loggedInUser['Correo Electrónico'];
+            document.getElementById('update-address').value = loggedInUser['Dirección'];
+            document.getElementById('update-phone').value = loggedInUser['Teléfono'];
+        }
+    }
+    </script>
+
+
+
+</body>
+</html>

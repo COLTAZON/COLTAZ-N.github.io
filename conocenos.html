@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="conocenos.css">
+    <style>
+        /* Add styles for the image container */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        figure {
+            text-align: center;
+            margin: 10px;
+        }
+
+        img {
+            max-width: 600px;
+            height: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 20px 0;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .names-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .names-list li {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        /* Estilos para la bandeja de sugerencias */
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="img/logo i6.png" alt="Logo Coltazón" id="logo">
+    <h1>Bienvenidos a Coltazón</h1>
+    <CEnter><p>Explore nuestros deliciosos platos</p></CEnter>
+   
+</header>
+
+<button id="btnBackToTop" title="Volver Arriba">↑</button>
+<script>
+    var btnBackToTop = document.getElementById("btnBackToTop");
+
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            btnBackToTop.style.display = "block";
+        } else {
+            btnBackToTop.style.display = "none";
+        }
+    }
+
+    btnBackToTop.addEventListener("click", function() {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    });
+</script>
+
+<nav>
+    <CEnter><H1>CONOCENOS</H1></CEnter>
+    <ul>
+        <li><a href="index.html">Coltazón</a></li>
+        <li><a href="comidasrapidas.html">Comidas Rápidas</a></li>
+        <li><a href="comidacomun.html">Comida Común</a></li>
+        <li><a href="postres.html">Postres</a></li>
+        <li><a href="pedidos.html">Pedidos</a></li>
+        <li><a href="pcocina.html">Productos</a></li>
+        <li><a href="conocenos.html">Conócenos</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        
+        <p>
+            Crear una página web para nuestro restaurante ficticio es un proyecto emocionante que nos permite dar vida a nuestras ideas culinarias. A través de esta plataforma, podemos expresar la identidad única de nuestro restaurante, desde el diseño hasta el menú que queremos ofrecer. Es una gran oportunidad para explorar nuestra creatividad y presentar nuestros platos de una manera atractiva.
+
+            Además, tener una página web nos ayuda a conectar con un público potencial, incluso si nuestro restaurante no existe físicamente. Podemos compartir historias sobre nuestros ingredientes, imágenes cautivadoras y promociones que despierten el interés de los comensales. 
+
+            Este proyecto también nos brinda la oportunidad de mejorar nuestras habilidades técnicas, como el diseño web y el marketing digital. A medida que trabajamos juntos, aprenderemos sobre la gestión de contenido y la optimización para motores de búsqueda (SEO). En resumen, crear esta página no solo es divertido, sino que también es una experiencia educativa que fortalece nuestro trabajo en equipo y nos prepara para futuros desafíos en el mundo culinario.
+        </p>
+        <div class="image-container">
+            <figure>
+                <img src="img/WhatsApp Image 2024-10-07 at 5.28.24 PM.jpeg" alt="Descripción del plato principal">
+            </figure>
+        </div>
+        <div class="estudiantes-title">Estudiantes</div>
+        <ul class="names-list">
+            <li>Juan David Fonseca Rincon</li>
+            <li>Juan Pablo Henrriquez Pabon</li>
+            <li>Duviert Norvey Suarez Rodriguez</li>
+            <li>Danna Valentina Rivera Figueroa</li>
+        </ul>
+    </section>
+
+    <!-- Sección de sugerencias -->
+    <section>
+        <h2>Sugerencias</h2>
+        <p>¡Nos encantaría saber tu opinión! Por favor, déjanos tus sugerencias.</p>
+        <form id="suggestion-form">
+            <div>
+                <label for="name">Tu Nombre:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="suggestion">Sugerencia:</label>
+                <textarea id="suggestion" name="suggestion" rows="4" required></textarea>
+            </div>
+            <button type="submit">Enviar Sugerencia</button>
+        </form>
+    </section>
+
+</main>
+
+
+
+<footer id="redes">
+    <center>
+      <p>Síguenos en nuestras redes sociales:</p>
+      <ul>
+          <li><a href="https://web.facebook.com/profile.php?id=61566984811997" target="_blank"><img class="facebook" src="img/facebook.png" alt="facebook"></a></li>
+          <li><a href="https://x.com/coltazon" target="_blank"><img class="x" src="img/x.png" alt="x"></a></li>
+          <li><a href="https://www.instagram.com/coltazon183/profilecard/?igsh=YnRxaDh6MTBweTBt" target="_blank"><img class="instagram" src="img/instagram.webp" alt="instagram"></a></li>
+      </ul>
+      <p>&copy; 2024 Coltazón. Todos los derechos reservados.</p>
+    </center>
+  </footer>     
+
+</body>
+</html>
+
+

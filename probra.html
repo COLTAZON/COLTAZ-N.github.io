@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="probra.css">
+</head>
+<body>
+    <div class="button-container">
+        <button class="small-button" onclick="openModal('loginModal')">Iniciar Sesión</button>
+        <button class="small-button" onclick="openModal('registerModal')">Regístrate</button>
+        <button class="small-button" onclick="openModal('updateModal')">Actualizar Datos</button>
+    </div>
+
+    <!-- Modales -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm" method="POST" action="login.php">
+                <label for="loginNombre">Nombre de Usuario:</label>
+                <input type="text" id="loginNombre" name="nombre" required>
+
+                <label for="loginPassword">Contraseña:</label>
+                <input type="password" id="loginPassword" name="password" required>
+
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Regístrate</h2>
+            <form id="registerForm" method="POST" action="register.php">
+                <label for="registerNombre">Nombre de Usuario:</label>
+                <input type="text" id="registerNombre" name="nombre" required>
+
+                <label for="registerEmail">Correo Electrónico:</label>
+                <input type="email" id="registerEmail" name="email" required>
+
+                <label for="registerDireccion">Dirección:</label>
+                <input type="text" id="registerDireccion" name="direccion" required>
+
+                <label for="registerTelefono">Teléfono:</label>
+                <input type="tel" id="registerTelefono" name="telefono" required>
+
+                <label for="registerPassword">Contraseña:</label>
+                <input type="password" id="registerPassword" name="password" required>
+
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('updateModal')">&times;</span>
+            <h2>Actualizar Datos</h2>
+            <form id="updateForm" method="POST" action="update.php">
+                <label for="updateNombre">Nombre de Usuario:</label>
+                <input type="text" id="updateNombre" name="nombre" required>
+
+                <label for="updateEmail">Nuevo Correo Electrónico:</label>
+                <input type="email" id="updateEmail" name="email">
+
+                <label for="updateDireccion">Nueva Dirección:</label>
+                <input type="text" id="updateDireccion" name="direccion">
+
+                <label for="updateTelefono">Nuevo Teléfono:</label>
+                <input type="tel" id="updateTelefono" name="telefono">
+
+                <label for="updatePassword">Nueva Contraseña:</label>
+                <input type="password" id="updatePassword" name="password">
+
+                <button type="submit">Actualizar</button>
+            </form>
+        </div>
+    </div>
+    
+<script>function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+}
+
+window.onclick = function(event) {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+        if (event.target === modals[i]) {
+            modals[i].style.display = "none";
+        }
+    }
+}
+
+function handleFormSubmit(event, formId, actionUrl) {
+    event.preventDefault();
+    
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+
+    fetch(actionUrl, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        if (data.status === 'success') {
+            closeModal(form.closest('.modal').id);
+            form.reset();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+
+}</script>
+    <script src="scripts.js"></script>
+
+
+
+
+
+    
+
+
+    <h1>Juegos de Emparejamiento y Memoria</h1>
+
+    <div class="game-container">
+        <h2>Empareja los Ingredientes</h2>
+        <div id="matching-game" class="grid"></div>
+    </div>
+
+    <div class="game-container">
+        <h2>Memoria Culinaria</h2>
+        <div id="memory-game" class="grid"></div>
+    </div>
+
+    <script>// Ingredientes y cartas para ambos juegos
+        const ingredients = [
+            'harina', 'huevo', 'tomate', 'cebolla', 
+            'harina', 'huevo', 'tomate', 'cebolla'
+        ];
+        
+        const memoryItems = [
+            'sarten', 'cuchillo', 'olla', 'cuchara', 
+            'sarten', 'cuchillo', 'olla', 'cuchara'
+        ];
+        
+        // Función para barajar elementos
+        function shuffle(array) {
+            array.sort(() => Math.random() - 0.5);
+        }
+        
+        // Juego de Empareja los Ingredientes
+        function setupMatchingGame() {
+            const grid = document.getElementById('matching-game');
+            shuffle(ingredients);
+            grid.innerHTML = '';
+        
+            ingredients.forEach(ingredient => {
+                const img = document.createElement('img');
+                img.src = `img/${ingredient}.png`;
+                img.alt = ingredient;
+                img.dataset.name = ingredient;
+                img.addEventListener('click', handleMatchClick);
+                grid.appendChild(img);
+            });
+        }
+        
+        let firstMatch = null;
+        let secondMatch = null;
+        function handleMatchClick(event) {
+            const clicked = event.target;
+        
+            if (!firstMatch) {
+                firstMatch = clicked;
+                firstMatch.classList.add('flipped');
+            } else if (firstMatch && !secondMatch) {
+                secondMatch = clicked;
+                secondMatch.classList.add('flipped');
+        
+                if (firstMatch.dataset.name === secondMatch.dataset.name) {
+                    setTimeout(() => {
+                        firstMatch.classList.add('hidden');
+                        secondMatch.classList.add('hidden');
+                        resetMatch();
+                    }, 500);
+                } else {
+                    setTimeout(() => {
+                        firstMatch.classList.remove('flipped');
+                        secondMatch.classList.remove('flipped');
+                        resetMatch();
+                    }, 1000);
+                }
+            }
+        }
+        
+        function resetMatch() {
+            firstMatch = null;
+            secondMatch = null;
+        }
+        
+        // Juego de Memoria Culinaria
+        function setupMemoryGame() {
+            const grid = document.getElementById('memory-game');
+            shuffle(memoryItems);
+            grid.innerHTML = '';
+        
+            memoryItems.forEach(item => {
+                const img = document.createElement('img');
+                img.src = `img/back.png`;  // Imagen de carta boca abajo
+                img.alt = 'Carta';
+                img.dataset.name = item;
+                img.addEventListener('click', handleMemoryClick);
+                grid.appendChild(img);
+            });
+        }
+        
+        let firstMemory = null;
+        let secondMemory = null;
+        function handleMemoryClick(event) {
+            const clicked = event.target;
+        
+            if (!firstMemory) {
+                firstMemory = clicked;
+                clicked.src = `img/${clicked.dataset.name}.png`;
+            } else if (firstMemory && !secondMemory) {
+                secondMemory = clicked;
+                clicked.src = `img/${clicked.dataset.name}.png`;
+        
+                if (firstMemory.dataset.name === secondMemory.dataset.name) {
+                    firstMemory = null;
+                    secondMemory = null;
+                } else {
+                    setTimeout(() => {
+                        firstMemory.src = 'img/back.png';
+                        secondMemory.src = 'img/back.png';
+                        firstMemory = null;
+                        secondMemory = null;
+                    }, 1000);
+                }
+            }
+        }
+        
+        // Inicializar los juegos
+        setupMatchingGame();
+        setupMemoryGame();
+        </script>
+</body>
+</html>

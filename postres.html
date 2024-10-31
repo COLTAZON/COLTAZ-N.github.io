@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTRES</title>
+    <link rel="stylesheet" href="postres.css">
+</head>
+<body>
+    
+    <header>
+        <img src="img/logo i6.png" alt="Logo Coltazón" id="logo">
+        
+        <h1>Bienvenidos a Coltazón</h1>
+        <p>Explore nuestros deliciosos platos</p>
+        <div class="search-container">
+            <form id="search-form" action="#">
+                <input type="text" id="search-input" placeholder="Buscar en la página...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <script>
+            document.getElementById('search-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evita el envío del formulario
+                const searchQuery = document.getElementById('search-input').value.toLowerCase();
+                const sections = document.querySelectorAll('main section');
+                let found = false;
+    
+                sections.forEach(section => {
+                    const textContent = section.textContent.toLowerCase();
+                    if (textContent.includes(searchQuery)) {
+                        found = true;
+                        // Desplaza la vista a la sección encontrada
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Resalta la sección encontrada
+                        section.style.backgroundColor = '#ffff9';
+                        // Después de un tiempo, volver al color original
+                        setTimeout(() => {
+                            section.style.backgroundColor = 'white';
+                        }, 2000);
+                    }
+                });
+                if (!found) {
+                    alert('No se encontraron coincidencias.');
+                }
+            });
+        </script>
+    </header>
+    <button id="btnBackToTop" title="Volver Arriba">↑</button>
+    <script>
+       var btnBackToTop = document.getElementById("btnBackToTop");
+       
+    
+       window.onscroll = function() { scrollFunction() };
+       
+       function scrollFunction() {
+           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+               btnBackToTop.style.display = "block";
+           } else {
+               btnBackToTop.style.display = "none";
+           }
+       }
+       
+       
+       btnBackToTop.addEventListener("click", function() {
+           document.body.scrollTop = 0; 
+           document.documentElement.scrollTop = 0; 
+       });
+       </script>
+    <center><h1>POSTRES</h1></center>
+    <nav>
+        <ul>
+            <li><a href="index.html">Coltazón</a></li>
+            <li><a href="comidasrapidas.html">Comidas Rápidas</a></li>
+            <li><a href="cvegetariana.html">Comida Vegetariana</a></li>
+            <li><a href="comidacomun.html">Comida Común</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+            <li><a href="pcocina.html">Productos</a></li>
+            <li><a href="conocenos.html">Conocenos</a></li>
+        </ul>
+    </nav>
+    <p>𝓐𝓺𝓾í 𝓮𝓷𝓬𝓸𝓷𝓽𝓻𝓪𝓻𝓪𝓼 𝓻𝓮𝓬𝓮𝓽𝓪𝓼 𝓼𝓮𝓷𝓬𝓲𝓵𝓵𝓪𝓼 𝓭𝓮 𝓭𝓲𝓼𝓽𝓲𝓷𝓽𝓸𝓼 𝓹𝓸𝓼𝓽𝓻𝓮𝓼 𝓬𝓪𝓼𝓮𝓻𝓸𝓼 𝓺𝓾𝓮 𝓹𝓾𝓮𝓭𝓮𝓼 𝓻𝓮𝓪𝓵𝓲𝔃𝓪𝓻 𝓮𝓷 𝓬𝓪𝓼𝓪.</p>
+    <main>
+    <section class="recipe">
+        <center><h2>Brownies de Chocolate</h2></center>
+       <center> <img src="img/brownie.jpg" alt="Brownies de Chocolate"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>200g de chocolate negro</li>
+            <li>150g de mantequilla</li>
+            <li>200g de azúcar</li>
+            <li>3 huevos</li>
+            <li>100g de harina</li>
+            <li>1 cucharadita de esencia de vainilla</li>
+            <li>Una pizca de sal</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Precalentar el horno a 180°C (350°F).</li>
+            <li>Derretir el chocolate y la mantequilla en un recipiente al baño maría.</li>
+            <li>Agregar el azúcar y mezclar bien.</li>
+            <li>Incorporar los huevos uno a uno, batiendo bien después de cada adición.</li>
+            <li>Agregar la esencia de vainilla y una pizca de sal.</li>
+            <li>Incorporar la harina y mezclar hasta obtener una masa homogénea.</li>
+            <li>Verter la mezcla en un molde para hornear previamente engrasado.</li>
+            <li>Hornear durante 25-30 minutos, o hasta que al insertar un palillo este salga limpio.</li>
+            <li>Dejar enfriar antes de cortar en porciones.</li>
+        </ol>
+    </section>
+    
+    <section class="recipe">
+        <center><h2>Cheesecake de Fresa</h2></center>
+    <center><img src="img/Cheesecake de Fresa.jfif" alt="Cheesecake de Fresa"></center>
+        <h3>Ingredientes:</h3>
+        <ul>
+            <li>200g de galletas tipo digestive</li>
+            <li>100g de mantequilla derretida</li>
+            <li>600g de queso crema</li>
+            <li>200g de azúcar</li>
+            <li>1 cucharadita de esencia de vainilla</li>
+            <li>3 huevos</li>
+            <li>200g de fresas frescas</li>
+            <li>100g de mermelada de fresa</li>
+        </ul>
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Precalentar el horno a 160°C (320°F).</li>
+            <li>Triturar las galletas y mezclar con la mantequilla derretida.</li>
+            <li>Presionar la mezcla de galletas en el fondo de un molde desmontable para formar la base.</li>
+            <li>En un bol grande, batir el queso crema, el azúcar y la esencia de vainilla hasta obtener una mezcla suave.</li>
+            <li>Agregar los huevos uno a uno, batiendo bien después de cada adición.</li>
+            <li>Verter la mezcla sobre la base de galletas en el molde.</li>
+            <li>Hornear durante 50-60 minutos, o hasta que el centro esté firme.</li>
+            <li>Dejar enfriar completamente y luego refrigerar durante al menos 4 horas o toda la noche.</li>
+            <li>Antes de servir, cubrir con fresas frescas y mermelada de fresa.</li>
+        </ol>
+    </section>
+    </main>
+    <footer id="redes">
+        <center>
+          <p>Síguenos en nuestras redes sociales:</p>
+          <ul>
+              <li><a href="https://web.facebook.com/profile.php?id=61566984811997" target="_blank"><img class="facebook" src="img/facebook.png" alt="facebook"></a></li>
+              <li><a href="https://x.com/coltazon" target="_blank"><img class="x" src="img/x.png" alt="x"></a></li>
+              <li><a href="https://www.instagram.com/coltazon183/profilecard/?igsh=YnRxaDh6MTBweTBt" target="_blank"><img class="instagram" src="img/instagram.webp" alt="instagram"></a></li>
+          </ul>
+          <p>&copy; 2024 Coltazón. Todos los derechos reservados.</p>
+        </center>
+      </footer>     
+    
+</body>
+</html>

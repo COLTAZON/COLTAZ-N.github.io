@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <center>
+    <header>
+        <img src="img/logo i6.png" alt="Logo Coltazón" id="logo">
+        
+        <h1>Bienvenidos a Coltazón</h1>
+        <p>Explore nuestros deliciosos platos</p>
+    </header>
+    </center>
+   <CENter>
+    <nav>
+        <ul>
+            <li><a href="comidacomun.html">Comida Común</a></li>
+            <li><a href="comidasrapidas.html">Comidas Rápidas</a></li>
+            <li><a href="cvegetariana.html">Comida Vegetariana</a></li>
+            <li><a href="postres.html">Postres</a></li>
+            <li><a href="pedidos.html">Pedidos</a></li>
+            <li><a href="pcocina.html">Productos</a></li>
+            <li><a href="conocenos.html">Conocenos</a></li>
+        </ul>
+    </nav>
+  </CENter>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="img/Home.png" alt="Imagen 1" style="width:100%">
+        </div>
+    
+        <div class="mySlides fade">
+          <img src="img/segundo.png" alt="Imagen 2" style="width:100%">
+        </div>
+    
+        <div class="mySlides fade">
+          <img src="img/MENU.png" alt="Imagen 3" style="width:100%">
+        </div>
+    
+        <!-- Flechas de navegación -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+    
+      <br>
+    
+      <!-- Puntos de navegación -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    
+      <script>let slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          
+          // Oculta todas las diapositivas
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          
+          slideIndex++;
+          
+          // Reinicia el índice si es mayor que el número de diapositivas
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          
+          // Quita la clase "active" de todos los puntos
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          
+          // Muestra la diapositiva actual y activa el punto correspondiente
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+          
+          // Cambia la diapositiva cada 5  segundos (5000 ms)
+          setTimeout(showSlides, 5000); 
+        }
+</script>  
+<section class="comidas-populares">
+  <h2>Recetas Populares</h2>
+  <p>En Coltazón, nos especializamos en ofrecerte una variedad de <strong>recetas populares</strong> que reflejan lo mejor de la cocina, siempre al alcance de tu mesa. Nuestra selección de recetas se actualiza cada dos semanas para que siempre encuentres algo nuevo y emocionante para preparar. Desde los platos tradicionales que han pasado de generación en generación, hasta creaciones innovadoras que combinan sabores y técnicas modernas, cada receta está pensada para deleitar a todos los paladares.</p>
+  
+  <p>Además, nuestras recetas están diseñadas para ser fáciles de seguir, con ingredientes accesibles y pasos claros para que puedas disfrutar de una experiencia culinaria sin complicaciones. Ya sea que busques inspiración para el desayuno, el almuerzo, la cena o incluso el postre, en Coltazón encontrarás opciones que te permitirán disfrutar de la cocina sin esfuerzo y con mucho sabor.</p>
+</section>
+
+
+<div class="recipes-container">
+  <div class="recipe">
+    <h3>Receta 1</h3>
+      <img src="img/avocaddo" alt="Receta 1">
+      <p>Avocado Toast con Huevo Pochado</p>
+      <button class="btn" onclick="openPopup('receta1')">Ver receta</button>
+  </div>
+
+  <div class="recipe">
+    <h3>Receta 2</h3>
+      <img src="img/suchi de frutas.jfif" alt="Receta 2">
+      <p>Sushi de Frutas<p>
+      <button class="btn" onclick="openPopup('receta2')">Ver receta</button>
+  </div>
+
+  <div class="recipe">
+    <h3>Receta 3 </h3>
+      <img src="img/mouse de chocolete.jfif" alt="Receta 3">
+      <p>Mousse de Chocolate</p>
+      <button class="btn" onclick="openPopup('receta3')">Ver receta</button>
+  </div>
+</div>
+
+<!-- Ventanas emergentes para cada receta -->
+<div id="receta1" class="popup">
+  <div class="popup-content">
+      <span class="close" onclick="closePopup('receta1')">&times;</span>
+      <h2>Receta 1</h2>
+       <h2>Ingredientes</h2>
+        <ul class="ingredients">
+ <li>1 rebanada de pan integral (puedes usar pan de centeno o de semillas)</li>
+ <li>1 aguacate maduro</li>
+  <li>1 huevo</li>
+  <li>Jugo de medio limón</li>
+  <li>Sal y pimienta al gusto</li>
+ <li>Opcional: hojuelas de chile, semillas de sésamo o semillas de chía para decorar</li>
+        </ul>
+
+        <h2>Preparación</h2>
+        <ol class="instructions">
+            <li><strong>Preparar la tostada:</strong> Tosta la rebanada de pan integral hasta que esté crujiente.</li>
+            <li><strong>Preparar el aguacate:</strong> Pela y aplasta el aguacate en un tazón. Añade jugo de limón, sal y pimienta al gusto.</li>
+            <li><strong>Hacer el huevo pochado:</strong> En una cacerola pequeña, calienta agua a fuego lento. Rompe el huevo en un tazón pequeño y viértelo en el agua creando un remolino. Cocina durante 3-4 minutos y retira con una espumadera.</li>
+            <li><strong>Montar el avocado toast:</strong> Unta el aguacate machacado sobre la tostada y coloca el huevo pochado encima.</li>
+            <li><strong>Agregar los toques finales:</strong> Espolvorea sal, pimienta y los ingredientes opcionales si lo deseas.</li>
+        </ol>
+
+      
+  </div>
+</div>
+
+<div id="receta2" class="popup">
+  <div class="popup-content">
+      <span class="close" onclick="closePopup('receta2')">&times;</span>
+      <h2>Receta 2</h2>
+      <h3>Ingredientes</h3>
+        <ul class="ingredients">
+            <li>1 taza de arroz para sushi</li>
+            <li>1 1/4 tazas de agua</li>
+            <li>2 cucharadas de azúcar</li>
+            <li>1 cucharada de vinagre de arroz</li>
+            <li>1 plátano, cortado en tiras</li>
+            <li>1 mango, cortado en tiras</li>
+            <li>1 kiwi, pelado y cortado en tiras</li>
+            <li>4 hojas de alga nori (opcional)</li>
+            <li>Coco rallado (opcional)</li>
+        </ul>
+
+        <h3>Preparación</h3>
+        <ol class="instructions">
+            <li>Enjuaga el arroz bajo agua fría hasta que el agua salga clara. Combina el arroz y el agua en una cacerola y lleva a ebullición.</li>
+            <li>Reduce el fuego a bajo, cubre y cocina durante 15 minutos. Retira del fuego y deja reposar durante 10 minutos.</li>
+            <li>En un tazón pequeño, mezcla el azúcar y el vinagre de arroz. Calienta un poco para disolver el azúcar y mezcla con el arroz cocido.</li>
+            <li>Si usas alga nori, colócala sobre una esterilla de sushi. Extiende una capa de arroz sobre el alga, dejando un borde en la parte superior.</li>
+            <li>Coloca tiras de plátano, mango y kiwi en el centro del arroz. Enrolla firmemente y sella el borde con un poco de agua.</li>
+            <li>Corta en piezas y espolvorea con coco rallado. Sirve con miel o salsa de chocolate para mojar.</li>
+        </ol>
+  </div>
+</div>
+
+<div id="receta3" class="popup">
+  <div class="popup-content">
+      <span class="close" onclick="closePopup('receta3')">&times;</span>
+      <h2>Receta 3</h2>
+      <p></p><h1>Mousse de Chocolate</h1>
+      <h2>Ingredientes (para 4 porciones):</h2>
+      <ul>
+          <li>200 g de chocolate negro (70% cacao)</li>
+          <li>3 huevos</li>
+          <li>50 g de azúcar</li>
+          <li>1 cucharada de extracto de vainilla</li>
+          <li>200 ml de nata (crema de leche) para montar</li>
+          <li>Una pizca de sal</li>
+          <li>Chocolate rallado o frutas para decorar (opcional)</li>
+      </ul>
+      
+      <h2>Preparación:</h2>
+      <ol>
+          <li><strong>Derretir el chocolate:</strong>
+              <p>
+                  Trocea el chocolate negro y colócalo en un recipiente resistente al calor.
+                  Derrite el chocolate al baño maría o en el microondas, asegurándote de no quemarlo. Una vez derretido, deja enfriar un poco.
+              </p>
+          </li>
+          <li><strong>Batir las yemas:</strong>
+              <p>
+                  En un tazón, bate las yemas de huevo con el azúcar y el extracto de vainilla hasta que la mezcla esté pálida y espumosa.
+              </p>
+          </li>
+          <li><strong>Mezclar el chocolate:</strong>
+              <p>
+                  Agrega el chocolate derretido a la mezcla de yemas y mezcla bien hasta que esté completamente incorporado.
+              </p>
+          </li>
+          <li><strong>Montar la nata:</strong>
+              <p>
+                  En otro tazón, bate la nata hasta que forme picos suaves.
+              </p>
+          </li>
+          <li><strong>Incorporar la nata:</strong>
+              <p>
+                  Añade un tercio de la nata montada a la mezcla de chocolate y yemas. Mezcla suavemente para aligerar la mezcla.
+                  Luego, añade el resto de la nata montada con movimientos envolventes para no perder aire.
+              </p>
+          </li>
+          <li><strong>Montar las claras:</strong>
+              <p>
+                  En otro tazón, bate las claras de huevo con una pizca de sal hasta que estén a punto de nieve.
+                  Incorpora las claras batidas a la mezcla de chocolate con movimientos envolventes.
+              </p>
+          </li>
+          <li><strong>Refrigerar:</strong>
+              <p>
+                  Vierte la mousse en copas individuales y refrigéralas durante al menos 2 horas, o hasta que estén firmes.
+              </p>
+          </li>
+          <li><strong>Servir:</strong>
+              <p>
+                  Decora con chocolate rallado o frutas frescas antes de servir.
+              </p>
+          </li>
+      </ol>
+  </div>
+  
+</div>
+<script>function openPopup(recipeId) {
+  document.getElementById(recipeId).style.display = "block";
+}
+
+function closePopup(recipeId) {
+  document.getElementById(recipeId).style.display = "none";
+}
+</script>
+<section class="comidas-populares">
+  <h2>PROMOCIONES</h2>
+  <p>En Coltazón, estamos comprometidos con ofrecerte las mejores promociones para que disfrutes de tus comidas favoritas a precios irresistibles. Contamos con una amplia variedad de opciones que se adaptan a tus gustos y necesidades. Ya sea que prefieras comida rápida, platos vegetarianos o deliciosos postres, nuestras promociones están diseñadas para que puedas disfrutar de cada bocado sin preocuparte por tu bolsillo. Cada semana, lanzamos nuevas ofertas especiales, lo que te permite descubrir nuevas combinaciones de sabores a precios inigualables.</p>
+  
+  <p>Además, nuestras promociones incluyen desde comidas para compartir en pareja hasta combos familiares, perfectos para disfrutar con amigos o en reuniones familiares. Desde hamburguesas y pizzas hasta opciones más saludables como ensaladas y jugos naturales, siempre encontrarás una oferta que te haga querer regresar. No pierdas la oportunidad de aprovechar nuestras promociones exclusivas, vigentes por tiempo limitado, y deleitarte con lo mejor que Coltazón tiene para ofrecer.</p>
+</section>
+
+
+<div class="button-container">
+  <a href="https://promocoltzon.my.canva.site/promosdecomidacomundecoltazon" target="_blank">
+      <button class="custom-button">Promos C. Común</button>
+  </a>
+
+  <a href="https://promocoltzon.my.canva.site/" target="_blank">
+      <button class="custom-button">Promos C. Rápidas</button>
+  </a>
+
+  <a href="https://promocoltzon.my.canva.site/promoscvegetariana" target="_blank">
+      <button class="custom-button">Promos C. Vegetariana</button>
+  </a>
+
+  <a href="https://promocoltzon.my.canva.site/promospostres" target="_blank">
+      <button class="custom-button">Promos de Postres</button>
+  </a>
+</div>
+<section class="comidas-populares">
+<p>Cada tipo de comida cuenta con promociones únicas, actualizadas periódicamente para que siempre tengas algo nuevo que disfrutar. Ya sea que busques un combo rápido para compartir, una opción vegetariana llena de sabor, o postres irresistibles, estos botones te guiarán directamente a la categoría que más te interese. Descubre las mejores ofertas en Coltazón con solo un clic y aprovecha al máximo nuestras promociones pensadas para cada tipo de comida.</p>
+</section>
+<footer id="redes">
+  <center>
+    <p>Síguenos en nuestras redes sociales:</p>
+    <ul>
+        <li><a href="https://web.facebook.com/profile.php?id=61566984811997" target="_blank"><img class="facebook" src="img/facebook.png" alt="facebook"></a></li>
+        <li><a href="https://x.com/coltazon" target="_blank"><img class="x" src="img/x.png" alt="x"></a></li>
+        <li><a href="https://www.instagram.com/coltazon183/profilecard/?igsh=YnRxaDh6MTBweTBt" target="_blank"><img class="instagram" src="img/instagram.webp" alt="instagram"></a></li>
+    </ul>
+    <p>&copy; 2024 Coltazón. Todos los derechos reservados.</p>
+  </center>
+</footer>      
+</body>
+</html>
